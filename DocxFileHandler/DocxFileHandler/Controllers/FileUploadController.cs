@@ -22,14 +22,19 @@ namespace DocxFileHandler.Controllers
                 if (file.Length <= 0 || Path.GetExtension(file.FileName).ToLower() != ".docx")
                     return BadRequest("Invalid file or format.");
 
-                await _blobService.UploadFileAsync($"{_blobService.GetContainerName()}", file);
+                var metadata = new Dictionary<string, string>
+                {
+                    { "Key1", email }
+                };
 
+                if (!await _blobService.UploadFileAsync(file)) return Conflict("File already exist in storage");
+
+                await _blobService.SetBlobMetadataAsync(file.FileName, metadata);
                 return Ok("File uploaded successfully!");
-
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Internal server error");
+                return StatusCode(500, $"{ex}");
             }
         }
     }
