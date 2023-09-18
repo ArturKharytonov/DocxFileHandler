@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocxFileHandler", "DocxFileHandler\DocxFileHandler.csproj", "{63188938-A2EF-4CDF-88B6-00F9BED2FA43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DocxFileHandler", "DocxFileHandler\DocxFileHandler.csproj", "{63188938-A2EF-4CDF-88B6-00F9BED2FA43}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureBlobTrigger", "AzureBlobTrigger\AzureBlobTrigger.csproj", "{556FE571-1BE1-4C42-9BFE-55F842241BBE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureBlobTrigger", "AzureBlobTrigger\AzureBlobTrigger.csproj", "{556FE571-1BE1-4C42-9BFE-55F842241BBE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocxFileHandler.Tests", "DocxFileHandler.Tests\DocxFileHandler.Tests.csproj", "{FAD5A6D3-82BD-4AB3-BA4E-E33C067AC17A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{556FE571-1BE1-4C42-9BFE-55F842241BBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{556FE571-1BE1-4C42-9BFE-55F842241BBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{556FE571-1BE1-4C42-9BFE-55F842241BBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAD5A6D3-82BD-4AB3-BA4E-E33C067AC17A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAD5A6D3-82BD-4AB3-BA4E-E33C067AC17A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAD5A6D3-82BD-4AB3-BA4E-E33C067AC17A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAD5A6D3-82BD-4AB3-BA4E-E33C067AC17A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
