@@ -1,0 +1,92 @@
+/* src/FileUploader.css */
+.main-div{
+    position: relative;
+    display: flex;
+    flex-direction: colum;
+    justify-content: center;
+    align-items: center;
+    background-color: #1e2223;
+    border-radius: 15px;
+    padding: 150px 175px;
+    color: white;
+}
+.main-div-h2{
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 60px;
+}
+.drop-zone {
+    border: 2px dashed black;
+    border-radius: 4px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .drop-zone p {
+    margin: 0;
+    font-size: 16px;
+  }
+  
+  .drop-zone.active {
+    background-color: #101112;
+  }
+  
+  button {
+    margin-top: 10px;
+    background-color:#2B2F31 ;
+    color: white ;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #151819;
+  }
+  .email-zone{
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  .email-input{
+    height:40px;
+    border-radius: 10px;
+    padding: 5px 20px;
+    margin-bottom: 13px;
+    font-size: 15px;
+    font-weight: 600;
+    background-color: #181A1B;
+    color: white;
+    outline: none;
+  }
+  .email-error{
+    color:white;
+    position: absolute;
+    top: 52%; /* Vertically center the text */
+    left: 50%; /* Horizontally center the text */
+    transform: translate(-50%, -50%); /* Center the text within its own dimensions */
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .spin-animation {
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .selected-file-zone{
+    position: absolute;
+  }
+  button[disabled] {
+    /* Add your styles here */
+    background-color: rgb(112, 96, 96); /* Change the background color */
+    color: gray; /* Change the text color */
+    cursor: not-allowed; /* Change the cursor style */
+    /* Add any other styles you want */
+  }
