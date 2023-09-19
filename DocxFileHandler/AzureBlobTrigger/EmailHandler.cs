@@ -4,23 +4,25 @@ using System.Net.Mail;
 using System.Threading.Tasks;
 using Microsoft.Azure.Storage.Blob;
 using Microsoft.Azure.WebJobs;
+using Microsoft.Extensions.Configuration;
 
 namespace AzureBlobTrigger
 {
     public class EmailHandler
     {
-        private readonly SmtpClient _client = new("smtp.gmail.com")
-        {
-            Port = 587,
-            Credentials = new NetworkCredential(Environment.GetEnvironmentVariable("Email"), Environment.GetEnvironmentVariable("Password")),
-            EnableSsl = true
-        };
+        private readonly SmtpClient _client;
+        
+
+        public EmailHandler(SmtpClient smtpClient)
+                    => _client = smtpClient;
+        
 
         [FunctionName("EmailHandler")]
-        public async Task RunAsync([BlobTrigger("taskcontainer/{name}")] CloudBlockBlob myBlob)
+        public async Task<bool> RunAsync([BlobTrigger("taskcontainer/{name}")] CloudBlockBlob myBlob)
         {
-            await myBlob.FetchAttributesAsync();
-            if (!myBlob.Metadata.TryGetValue("Key1", out var emailFromMetadata) || !myBlob.Metadata.TryGetValue("Key2", out var urlValue)) return;
+            
+            //await myBlob.FetchAttributesAsync();
+            if (!myBlob.Metadata.TryGetValue("Key1", out var emailFromMetadata) || !myBlob.Metadata.TryGetValue("Key2", out var urlValue)) return false;
 
             var mailMessage = new MailMessage(Environment.GetEnvironmentVariable("Email"), emailFromMetadata, "File Uploading", String.Empty);
             mailMessage.Body = $@"<html>
@@ -61,8 +63,8 @@ namespace AzureBlobTrigger
                         </html>";
 
             mailMessage.IsBodyHtml = true;
-
             await _client.SendMailAsync(mailMessage);
+            return true;
         }
     }
 }

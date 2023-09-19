@@ -1,18 +1,19 @@
 ﻿using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Specialized;
 using Azure.Storage.Sas;
+using DocxFileHandler.Services.Interfaces;
 
 namespace DocxFileHandler.Services
 {
-    public class BlobStorageService
+    public class BlobStorageService : IBlobStorageService
     {
         private readonly BlobServiceClient _blobServiceClient;
         private readonly BlobContainerClient _containerClient;
         private const string _containerName = "taskcontainer";
 
-        public BlobStorageService(string storageConnectionString)
+        public BlobStorageService(IConfiguration configuration)
         {
-            _blobServiceClient = new BlobServiceClient(storageConnectionString);
+            _blobServiceClient = new BlobServiceClient(configuration.GetConnectionString("AzureStorageConnection"));
             _containerClient = _blobServiceClient.GetBlobContainerClient(_containerName);
         }
 
@@ -35,6 +36,7 @@ namespace DocxFileHandler.Services
             return sasUri;
 
         }
+
         public async Task<bool> UploadFileAsync(IFormFile file)
         {
             var blob = _containerClient.GetBlobClient(file.FileName);
@@ -45,6 +47,7 @@ namespace DocxFileHandler.Services
             await using var stream = file.OpenReadStream();
 
             await blob.UploadAsync(stream);
+
             return true;
         }
 
