@@ -1,22 +1,29 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import FileUploader from './FIleUploader/FileUploader';
+import FileUploader from "./FIleUploader/FileUploader";
 
-import './App.css';
+import "./App.css";
 
 function App() {
   const [serverResponse, setServerResponse] = useState("");
 
   const displayServerError = (message) => {
-    setServerResponse(message)
-    setTimeout(() => {
-      setServerResponse("")
-    }, 4000)
-  }
+    let id;
+    const showServerMessage = (msg) => {
+      clearTimeout(id);
+      setServerResponse(msg);
+      id = setTimeout(() => {
+        setServerResponse("");
+      }, 4000);
+    };
+    showServerMessage(message);
+  };
   return (
     <div className="App">
-     <FileUploader displayServerError = {displayServerError}/>
-     {serverResponse === "" || <p className="server-response">{serverResponse}</p>}
+      <FileUploader displayServerError={displayServerError} />
+      {serverResponse === "" || (
+        <p className="server-response">{serverResponse}</p>
+      )}
     </div>
   );
 }
