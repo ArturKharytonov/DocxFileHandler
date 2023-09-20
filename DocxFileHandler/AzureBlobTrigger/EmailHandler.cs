@@ -1,10 +1,8 @@
 using System;
-using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using Microsoft.Azure.Storage.Blob;
 using Microsoft.Azure.WebJobs;
-using Microsoft.Extensions.Configuration;
 
 namespace AzureBlobTrigger
 {

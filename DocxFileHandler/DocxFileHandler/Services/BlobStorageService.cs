@@ -56,7 +56,8 @@ namespace DocxFileHandler.Services
         {
             var blobClient = _containerClient.GetBlobClient(blobName);
 
-            await blobClient.SetMetadataAsync(metadata);
+            if (blobClient != null)
+                await blobClient.SetMetadataAsync(metadata);
         }
     }
 }
